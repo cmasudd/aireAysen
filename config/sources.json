@@ -1,0 +1,41 @@
+{
+  "report_id": "5a8d0e63-cfeb-4707-bd0e-ce093b1eacdd",
+  "timezone": "America/Santiago",
+  "sources": [
+    {
+      "environment": "INDOOR",
+      "page_id": "p_xbr0ilpmid",
+      "datasource_id": "6eb08330-c81e-4f69-93d6-14f7e5234641",
+      "component_id": "cd-lukamlpmid",
+      "concepts": {
+        "timestamp": "qt_jukamlpmid",
+        "sensor": "qt_7hpbylpmid",
+        "pm1": "qt_51qvi1qmid",
+        "pm25": "qt_kukamlpmid",
+        "pm10": "qt_ulxjh1qmid"
+      },
+      "sensor_ids": [26, 27, 28, 29, 30, 31, 32, 33]
+    },
+    {
+      "environment": "OUTDOOR",
+      "page_id": "p_zkd9rrqmid",
+      "datasource_id": "3aaaa3af-554d-4572-97ca-dddf3cc27fa7",
+      "component_id": "cd-66ftesqmid",
+      "concepts": {
+        "timestamp": "qt_1ygtesqmid",
+        "sensor": "qt_0ygtesqmid",
+        "pm1": "qt_moq370qmid",
+        "pm25": "qt_2ygtesqmid",
+        "pm10": "qt_3t7350qmid"
+      },
+      "sensor_ids": [34, 35, 36, 37, 38, 39, 40]
+    }
+  ],
+  "precise_site": {
+    "sensor_ids": [31, 39],
+    "latitude": -45.61444,
+    "longitude": -72.10975,
+    "altitude_m": 278,
+    "description": "Aproximadamente 5,6 km en línea recta al suroeste de Coyhaique"
+  }
+}

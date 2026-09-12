@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Monitoreo abierto de material particulado en Coyhaique, Región de Aysén.">
+  <title>Aire Aysén · Centro C+</title>
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet-1.9.4.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>.hero-copy{min-width:0;width:100%}</style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="#inicio" aria-label="Inicio"><img src="assets/logo-cmas-header.svg" alt="Universidad del Desarrollo y Centro de Investigación en Tecnologías para la Sociedad"></a>
+    <span class="review">Datos experimentales · licenciamiento en revisión</span>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">OBSERVACIÓN AMBIENTAL ABIERTA · COYHAIQUE</p>
+        <h1>El aire de Aysén,<br><em>dato a dato.</em></h1>
+        <p class="lead">Explora el material particulado observado dentro y fuera de los espacios, compara tendencias y descarga el histórico abierto.</p>
+      </div>
+      <div class="hero-number"><strong>15</strong><span>sensores<br>documentados</span></div>
+      <div class="livebar">
+        <span><i id="live-dot"></i><b id="live-label">Cargando datos</b></span>
+        <span>Última medición <b id="updated">—</b></span>
+        <span>La web revisa nuevos datos cada 10 minutos</span>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="map-copy">
+        <p class="eyebrow dark">UBICACIÓN</p>
+        <h2>Dos ambientes,<br>un mismo lugar</h2>
+        <p>Los sensores 31 (interior) y 39 (exterior) comparten la única ubicación georreferenciada disponible: 278 m s. n. m., aproximadamente 5,6 km al suroeste de Coyhaique.</p>
+        <div class="location-card"><span>●</span><div><b>Ubicación exacta disponible</b><small>−45.61444, −72.10975 · Sensores 31 y 39</small></div></div>
+        <p class="muted">Los otros instrumentos se ubican en el área de Coyhaique, pero no se muestran como puntos individuales porque no contamos con sus coordenadas exactas.</p>
+      </div>
+      <div id="map" aria-label="Mapa de ubicación de los sensores"></div>
+    </section>
+
+    <section class="dashboard" id="datos">
+      <div class="dashboard-head">
+        <div><p class="eyebrow dark">SERIES DE MATERIAL PARTICULADO</p><h2 id="sensor-title">Sensor 31 · Interior</h2><p id="sensor-context">Ubicación georreferenciada</p></div>
+        <div class="controls">
+          <label>Ambiente<select id="environment"><option value="all">Todos</option><option value="INDOOR">Interior</option><option value="OUTDOOR">Exterior</option></select></label>
+          <label>Sensor<select id="sensor"></select></label>
+          <label>Variable<select id="variable"><option value="pm25_ugm3">MP2,5</option><option value="pm10_ugm3">MP10</option><option value="pm1_ugm3">MP1</option></select></label>
+          <label>Período<select id="period"><option value="24h">24 horas</option><option value="7d">7 días</option><option value="30d" selected>30 días</option><option value="all">Todo</option></select></label>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <article><span>Última lectura horaria</span><strong id="last-value">—</strong><small id="last-time">—</small></article>
+        <article id="norm-card"><span>Referencia chilena</span><strong id="norm-state">—</strong><small id="norm-detail">Promedio de 24 horas</small></article>
+        <article><span>Cobertura seleccionada</span><strong id="availability">—</strong><small id="record-count">—</small></article>
+      </div>
+
+      <div class="chart-panel">
+        <canvas id="chart"></canvas>
+        <div id="chart-empty" hidden>No hay mediciones en este período.</div>
+      </div>
+      <p class="chart-note" id="chart-note">La línea muestra el promedio diario y la banda el mínimo–máximo de cada día.</p>
+
+      <div class="actions">
+        <button id="download-selection">Descargar selección CSV</button>
+        <button id="download-all" class="secondary">Descargar todos por sensor (.zip)</button>
+      </div>
+    </section>
+
+    <section class="method">
+      <div><p class="eyebrow dark">CÓMO INTERPRETAR</p><h2>Una referencia,<br>no una certificación</h2></div>
+      <div class="method-grid">
+        <article><b>MP2,5</b><p>Referencia diaria de 50 µg/m³ según DS 12/2011 del Ministerio del Medio Ambiente.</p></article>
+        <article><b>MP10</b><p>Referencia diaria de 130 µg/m³N según DS 12/2021, publicado en 2022.</p></article>
+        <article><b>MP1</b><p>No cuenta con una norma primaria chilena general aplicable; se muestra sin clasificar.</p></article>
+        <p class="disclaimer">Estas comparaciones son orientativas. Los instrumentos no se presentan como estaciones EMRP y sus datos no determinan cumplimiento normativo. Las normas emplean promedios y condiciones estadísticas específicas, no una lectura horaria aislada.</p>
+      </div>
+    </section>
+
+    <section class="source">
+      <div><p class="eyebrow dark">FUENTE Y TRAZABILIDAD</p><h2>Desde Google<br>hasta GitHub</h2></div>
+      <div><p>Los datos se consultan desde el informe público <a href="https://datastudio.google.com/reporting/5a8d0e63-cfeb-4707-bd0e-ce093b1eacdd/page/p_xbr0ilpmid" target="_blank" rel="noopener">data Aysen de Looker Studio</a>, se validan y se publican como CSV mensuales en este repositorio. El proceso no utiliza la base de datos de CMAS.</p><p class="muted">La fuente original y su estructura fueron documentadas por <a href="https://github.com/AleReb/data_Aysen_exports" target="_blank" rel="noopener">AleReb/data_Aysen_exports</a>.</p></div>
+    </section>
+  </main>
+
+  <footer><img src="assets/Ingenieria.png" alt="Facultad de Ingeniería UDD"><p>Centro C+ · Universidad del Desarrollo</p><p>Datos experimentales y licenciamientos propuestos en revisión.</p></footer>
+
+  <script src="assets/vendor/leaflet/leaflet-1.9.4.js"></script>
+  <script src="assets/vendor/chart.umd-4.4.1.js"></script>
+  <script src="assets/vendor/jszip-3.10.1.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

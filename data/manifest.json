@@ -1,0 +1,483 @@
+{
+  "updated_at": "2026-09-11 22:00:00",
+  "checked_at": "2026-09-12T01:11:13+00:00",
+  "source": "Looker Studio: data Aysen",
+  "source_url": "https://datastudio.google.com/reporting/5a8d0e63-cfeb-4707-bd0e-ce093b1eacdd",
+  "variables": {
+    "pm1_ugm3": {
+      "label": "MP1",
+      "unit": "µg/m³",
+      "norm": null
+    },
+    "pm25_ugm3": {
+      "label": "MP2,5",
+      "unit": "µg/m³",
+      "norm": {
+        "period": "24 h",
+        "limit": 50,
+        "reference": "DS 12/2011 MMA"
+      }
+    },
+    "pm10_ugm3": {
+      "label": "MP10",
+      "unit": "µg/m³",
+      "norm": {
+        "period": "24 h",
+        "limit": 130,
+        "reference": "DS 12/2021 MMA, publicado en 2022"
+      }
+    }
+  },
+  "source_metadata": {
+    "app_version": "20260908_0000",
+    "data_timestamps": {
+      "INDOOR": "1789175449255",
+      "OUTDOOR": "1789175465078"
+    }
+  },
+  "stations": [
+    {
+      "sensor_id": 26,
+      "name": "Sensor 26",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 342,
+      "first_at": "2024-06-11 10:00:00",
+      "last_at": "2024-06-26 16:00:00",
+      "files": [
+        "data/sensor-26/2024-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 27,
+      "name": "Sensor 27",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 5504,
+      "first_at": "2024-06-11 10:00:00",
+      "last_at": "2026-07-25 17:00:00",
+      "files": [
+        "data/sensor-27/2024-06.csv",
+        "data/sensor-27/2024-07.csv",
+        "data/sensor-27/2024-08.csv",
+        "data/sensor-27/2024-09.csv",
+        "data/sensor-27/2024-10.csv",
+        "data/sensor-27/2024-11.csv",
+        "data/sensor-27/2024-12.csv",
+        "data/sensor-27/2025-01.csv",
+        "data/sensor-27/2026-06.csv",
+        "data/sensor-27/2026-07.csv"
+      ]
+    },
+    {
+      "sensor_id": 28,
+      "name": "Sensor 28",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 3234,
+      "first_at": "2024-06-26 18:00:00",
+      "last_at": "2026-06-04 09:00:00",
+      "files": [
+        "data/sensor-28/2024-06.csv",
+        "data/sensor-28/2024-07.csv",
+        "data/sensor-28/2024-09.csv",
+        "data/sensor-28/2024-10.csv",
+        "data/sensor-28/2024-11.csv",
+        "data/sensor-28/2025-01.csv",
+        "data/sensor-28/2025-04.csv",
+        "data/sensor-28/2025-05.csv",
+        "data/sensor-28/2025-06.csv",
+        "data/sensor-28/2025-07.csv",
+        "data/sensor-28/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 29,
+      "name": "Sensor 29",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 4363,
+      "first_at": "2024-06-12 18:00:00",
+      "last_at": "2026-06-04 09:00:00",
+      "files": [
+        "data/sensor-29/2024-06.csv",
+        "data/sensor-29/2024-07.csv",
+        "data/sensor-29/2024-08.csv",
+        "data/sensor-29/2024-09.csv",
+        "data/sensor-29/2024-10.csv",
+        "data/sensor-29/2024-11.csv",
+        "data/sensor-29/2024-12.csv",
+        "data/sensor-29/2025-01.csv",
+        "data/sensor-29/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 30,
+      "name": "Sensor 30",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 960,
+      "first_at": "2024-06-11 17:00:00",
+      "last_at": "2026-06-04 09:00:00",
+      "files": [
+        "data/sensor-30/2024-06.csv",
+        "data/sensor-30/2024-07.csv",
+        "data/sensor-30/2024-08.csv",
+        "data/sensor-30/2024-09.csv",
+        "data/sensor-30/2024-10.csv",
+        "data/sensor-30/2024-11.csv",
+        "data/sensor-30/2025-01.csv",
+        "data/sensor-30/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 31,
+      "name": "Sensor 31",
+      "environment": "INDOOR",
+      "location": "Aproximadamente 5,6 km en línea recta al suroeste de Coyhaique",
+      "location_precision": "exacta",
+      "latitude": -45.61444,
+      "longitude": -72.10975,
+      "altitude_m": 278,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 9068,
+      "first_at": "2024-06-11 09:00:00",
+      "last_at": "2026-09-11 22:00:00",
+      "files": [
+        "data/sensor-31/2024-06.csv",
+        "data/sensor-31/2024-07.csv",
+        "data/sensor-31/2024-08.csv",
+        "data/sensor-31/2024-09.csv",
+        "data/sensor-31/2024-10.csv",
+        "data/sensor-31/2024-11.csv",
+        "data/sensor-31/2025-01.csv",
+        "data/sensor-31/2025-06.csv",
+        "data/sensor-31/2025-07.csv",
+        "data/sensor-31/2026-02.csv",
+        "data/sensor-31/2026-03.csv",
+        "data/sensor-31/2026-04.csv",
+        "data/sensor-31/2026-05.csv",
+        "data/sensor-31/2026-06.csv",
+        "data/sensor-31/2026-07.csv",
+        "data/sensor-31/2026-08.csv",
+        "data/sensor-31/2026-09.csv"
+      ]
+    },
+    {
+      "sensor_id": 32,
+      "name": "Sensor 32",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 11185,
+      "first_at": "2024-06-12 19:00:00",
+      "last_at": "2026-09-11 22:00:00",
+      "files": [
+        "data/sensor-32/2024-06.csv",
+        "data/sensor-32/2024-07.csv",
+        "data/sensor-32/2024-08.csv",
+        "data/sensor-32/2024-09.csv",
+        "data/sensor-32/2024-10.csv",
+        "data/sensor-32/2024-11.csv",
+        "data/sensor-32/2024-12.csv",
+        "data/sensor-32/2025-07.csv",
+        "data/sensor-32/2025-08.csv",
+        "data/sensor-32/2025-09.csv",
+        "data/sensor-32/2025-10.csv",
+        "data/sensor-32/2025-11.csv",
+        "data/sensor-32/2025-12.csv",
+        "data/sensor-32/2026-01.csv",
+        "data/sensor-32/2026-02.csv",
+        "data/sensor-32/2026-03.csv",
+        "data/sensor-32/2026-04.csv",
+        "data/sensor-32/2026-05.csv",
+        "data/sensor-32/2026-06.csv",
+        "data/sensor-32/2026-07.csv",
+        "data/sensor-32/2026-08.csv",
+        "data/sensor-32/2026-09.csv"
+      ]
+    },
+    {
+      "sensor_id": 33,
+      "name": "Sensor 33",
+      "environment": "INDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 3971,
+      "first_at": "2024-06-11 20:00:00",
+      "last_at": "2026-06-04 09:00:00",
+      "files": [
+        "data/sensor-33/2024-06.csv",
+        "data/sensor-33/2024-07.csv",
+        "data/sensor-33/2024-08.csv",
+        "data/sensor-33/2024-09.csv",
+        "data/sensor-33/2024-10.csv",
+        "data/sensor-33/2024-11.csv",
+        "data/sensor-33/2025-01.csv",
+        "data/sensor-33/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 34,
+      "name": "Sensor 34",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 2910,
+      "first_at": "2024-06-15 15:00:00",
+      "last_at": "2026-06-04 08:00:00",
+      "files": [
+        "data/sensor-34/2024-06.csv",
+        "data/sensor-34/2024-07.csv",
+        "data/sensor-34/2024-08.csv",
+        "data/sensor-34/2024-09.csv",
+        "data/sensor-34/2024-10.csv",
+        "data/sensor-34/2024-11.csv",
+        "data/sensor-34/2025-01.csv",
+        "data/sensor-34/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 35,
+      "name": "Sensor 35",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 4842,
+      "first_at": "2024-06-15 18:00:00",
+      "last_at": "2026-06-04 08:00:00",
+      "files": [
+        "data/sensor-35/2024-06.csv",
+        "data/sensor-35/2024-07.csv",
+        "data/sensor-35/2024-08.csv",
+        "data/sensor-35/2024-09.csv",
+        "data/sensor-35/2024-10.csv",
+        "data/sensor-35/2024-11.csv",
+        "data/sensor-35/2024-12.csv",
+        "data/sensor-35/2025-01.csv",
+        "data/sensor-35/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 36,
+      "name": "Sensor 36",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 3154,
+      "first_at": "2024-06-17 18:00:00",
+      "last_at": "2026-06-04 08:00:00",
+      "files": [
+        "data/sensor-36/2024-06.csv",
+        "data/sensor-36/2024-07.csv",
+        "data/sensor-36/2024-08.csv",
+        "data/sensor-36/2024-09.csv",
+        "data/sensor-36/2024-10.csv",
+        "data/sensor-36/2024-11.csv",
+        "data/sensor-36/2025-01.csv",
+        "data/sensor-36/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 37,
+      "name": "Sensor 37",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 765,
+      "first_at": "2024-06-16 09:00:00",
+      "last_at": "2026-04-14 11:00:00",
+      "files": [
+        "data/sensor-37/2024-06.csv",
+        "data/sensor-37/2024-07.csv",
+        "data/sensor-37/2025-05.csv",
+        "data/sensor-37/2025-09.csv",
+        "data/sensor-37/2025-11.csv",
+        "data/sensor-37/2025-12.csv",
+        "data/sensor-37/2026-04.csv"
+      ]
+    },
+    {
+      "sensor_id": 38,
+      "name": "Sensor 38",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 3078,
+      "first_at": "2024-06-16 09:00:00",
+      "last_at": "2026-06-04 13:00:00",
+      "files": [
+        "data/sensor-38/2024-06.csv",
+        "data/sensor-38/2024-07.csv",
+        "data/sensor-38/2024-09.csv",
+        "data/sensor-38/2024-10.csv",
+        "data/sensor-38/2024-11.csv",
+        "data/sensor-38/2024-12.csv",
+        "data/sensor-38/2025-01.csv",
+        "data/sensor-38/2026-06.csv"
+      ]
+    },
+    {
+      "sensor_id": 39,
+      "name": "Sensor 39",
+      "environment": "OUTDOOR",
+      "location": "Aproximadamente 5,6 km en línea recta al suroeste de Coyhaique",
+      "location_precision": "exacta",
+      "latitude": -45.61444,
+      "longitude": -72.10975,
+      "altitude_m": 278,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 5537,
+      "first_at": "2024-06-16 10:00:00",
+      "last_at": "2026-09-11 22:00:00",
+      "files": [
+        "data/sensor-39/2024-06.csv",
+        "data/sensor-39/2024-07.csv",
+        "data/sensor-39/2025-01.csv",
+        "data/sensor-39/2025-06.csv",
+        "data/sensor-39/2025-07.csv",
+        "data/sensor-39/2026-02.csv",
+        "data/sensor-39/2026-03.csv",
+        "data/sensor-39/2026-04.csv",
+        "data/sensor-39/2026-05.csv",
+        "data/sensor-39/2026-06.csv",
+        "data/sensor-39/2026-07.csv",
+        "data/sensor-39/2026-08.csv",
+        "data/sensor-39/2026-09.csv"
+      ]
+    },
+    {
+      "sensor_id": 40,
+      "name": "Sensor 40",
+      "environment": "OUTDOOR",
+      "location": "Área de Coyhaique; ubicación exacta no disponible",
+      "location_precision": "general",
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "variables": [
+        "pm1_ugm3",
+        "pm25_ugm3",
+        "pm10_ugm3"
+      ],
+      "record_count": 387,
+      "first_at": "2024-06-18 15:00:00",
+      "last_at": "2026-06-04 08:00:00",
+      "files": [
+        "data/sensor-40/2024-06.csv",
+        "data/sensor-40/2024-07.csv",
+        "data/sensor-40/2025-01.csv",
+        "data/sensor-40/2026-06.csv"
+      ]
+    }
+  ]
+}
