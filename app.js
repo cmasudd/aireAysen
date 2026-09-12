@@ -1,6 +1,36 @@
 const $ = id => document.getElementById(id);
 const COLORS = { pm1_ugm3: '#3f8f8b', pm25_ugm3: '#087d83', pm10_ugm3: '#ef8d43' };
+const QUALITY_COLORS = ['#269d62', '#f2c94c', '#dc493a', '#9b3f91', '#6b267e', '#42145f'];
+const QUALITY_SCALES = {
+  pm25_ugm3: { ticks: [0, 25, 50, 75, 100, 500], limit: 50, title: 'MP2,5 · referencia chilena 50 µg/m³' },
+  pm10_ugm3: { ticks: [0, 65, 130, 195, 260, 500], limit: 130, title: 'MP10 · referencia chilena 130 µg/m³' },
+  pm1_ugm3: { ticks: [0, 25, 50, 75, 100, 500], limit: null, title: 'MP1 · escala visual sin norma chilena general' }
+};
 let manifest, stations = [], selected = 0, cache = {}, latest = {}, chart, map, sharedMarker, renderSequence = 0;
+
+const thresholdLine = {
+  id: 'thresholdLine',
+  afterDraw(instance, _args, options) {
+    if (options.value == null) return;
+    const y = instance.scales.y.getPixelForValue(options.value);
+    const { left, right, top, bottom } = instance.chartArea;
+    if (y < top || y > bottom) return;
+    const context = instance.ctx;
+    context.save();
+    context.strokeStyle = '#8d3c91';
+    context.lineWidth = 2;
+    context.setLineDash([7, 5]);
+    context.beginPath();
+    context.moveTo(left, y);
+    context.lineTo(right, y);
+    context.stroke();
+    context.fillStyle = '#6d2876';
+    context.font = '700 11px system-ui';
+    context.fillText(`Referencia diaria ${options.value} µg/m³`, left + 7, Math.max(top + 12, y - 6));
+    context.restore();
+  }
+};
+Chart.register(thresholdLine);
 
 function number(value) {
   const parsed = Number(value);
@@ -38,12 +68,46 @@ function formatReading(row, key) {
   const value = number(row?.[key]);
   return value === null ? '—' : value.toLocaleString('es-CL', { maximumFractionDigits: 1 });
 }
+function mixColor(from, to, amount) {
+  const channel = (hex, offset) => parseInt(hex.slice(offset, offset + 2), 16);
+  const value = offset => Math.round(channel(from, offset) + (channel(to, offset) - channel(from, offset)) * amount).toString(16).padStart(2, '0');
+  return `#${value(1)}${value(3)}${value(5)}`;
+}
+function colorForValue(value, key) {
+  const numeric = number(value), ticks = QUALITY_SCALES[key].ticks;
+  if (numeric === null || numeric <= ticks[0]) return QUALITY_COLORS[0];
+  for (let index = 1; index < ticks.length; index++) {
+    if (numeric <= ticks[index]) {
+      const ratio = (numeric - ticks[index - 1]) / (ticks[index] - ticks[index - 1]);
+      return mixColor(QUALITY_COLORS[index - 1], QUALITY_COLORS[index], ratio);
+    }
+  }
+  return QUALITY_COLORS.at(-1);
+}
+function updateQualityLegend(key) {
+  const scale = QUALITY_SCALES[key];
+  $('scale-title').textContent = scale.title;
+  $('scale-note').textContent = scale.limit == null
+    ? 'Escala cromática orientativa; MP1 no posee una norma primaria chilena general.'
+    : 'El rojo marca la referencia diaria; una lectura horaria aislada no determina cumplimiento.';
+  document.querySelector('.quality-gradient').style.background = `linear-gradient(90deg, ${QUALITY_COLORS.join(', ')})`;
+  $('quality-ticks').innerHTML = scale.ticks.map((tick, index) => `<span>${index === scale.ticks.length - 1 ? '≥' : ''}${tick}</span>`).join('');
+}
+function markerIcon(key) {
+  const sensor = sensorId => `<span style="background:${colorForValue(latest[sensorId]?.[key], key)}" title="Sensor ${sensorId}">${sensorId}</span>`;
+  return L.divIcon({ className: '', html: `<div class="shared-sensor-cluster">${sensor(31)}${sensor(39)}</div>`, iconSize: [72, 34], iconAnchor: [36, 17] });
+}
+function updateMapColors(key) {
+  if (sharedMarker) sharedMarker.setIcon(markerIcon(key));
+}
 
 function mapPopupContent() {
   const cards = [31, 39].map(sensorId => {
     const station = stations.find(item => item.sensor_id === sensorId), row = latest[sensorId];
     const environment = station?.environment === 'INDOOR' ? 'Interior' : 'Exterior';
-    return `<section class="map-reading"><b>Sensor ${sensorId} · ${environment}</b><span>MP1 ${formatReading(row, 'pm1_ugm3')} · MP2,5 ${formatReading(row, 'pm25_ugm3')} · MP10 ${formatReading(row, 'pm10_ugm3')} µg/m³</span><small>${row ? `Última lectura: ${localDate(row.fecha)}` : 'Sin lectura disponible'}</small><button type="button" data-open-sensor="${sensorId}">Ver histórico</button></section>`;
+    const badges = [['pm1_ugm3', 'MP1'], ['pm25_ugm3', 'MP2,5'], ['pm10_ugm3', 'MP10']]
+      .map(([key, label]) => `<i class="map-value" style="background:${colorForValue(row?.[key], key)}">${label} ${formatReading(row, key)}</i>`).join('');
+    return `<section class="map-reading"><b>Sensor ${sensorId} · ${environment}</b><span class="map-values">${badges}</span><small>µg/m³ · ${row ? `Última lectura: ${localDate(row.fecha)}` : 'Sin lectura disponible'}</small><button type="button" data-open-sensor="${sensorId}">Ver histórico</button></section>`;
   }).join('');
   return `${cards}<small class="map-coordinates">278 m s. n. m. · −45.61444, −72.10975</small>`;
 }
@@ -63,8 +127,7 @@ function setupMap() {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap' }).addTo(map);
   L.circle([-45.5712, -72.0683], { radius: 6500, color: '#6ba8a4', weight: 2, dashArray: '7 7', fillColor: '#82dfd1', fillOpacity: 0.12 })
     .addTo(map).bindPopup('<b>Área general de Coyhaique</b><br>Ubicación individual no disponible para 13 sensores');
-  const icon = L.divIcon({ className: '', html: '<div class="shared-sensor-dot"></div>', iconSize: [22, 22], iconAnchor: [11, 11] });
-  sharedMarker = L.marker([-45.61444, -72.10975], { icon }).addTo(map).bindPopup(mapPopupContent(), { minWidth: 310 });
+  sharedMarker = L.marker([-45.61444, -72.10975], { icon: markerIcon($('variable').value) }).addTo(map).bindPopup(mapPopupContent(), { minWidth: 310 });
   sharedMarker.on('popupopen', bindMapButtons);
   sharedMarker.openPopup();
 }
@@ -129,18 +192,25 @@ function daily(points) {
     count: labels.map(key => groups[key].length)
   };
 }
-function chartData(points, period, color) {
+function coloredLineStyle(key) {
+  return {
+    segment: { borderColor: context => colorForValue((context.p0.parsed.y + context.p1.parsed.y) / 2, key) },
+    pointBackgroundColor: context => colorForValue(context.raw, key),
+    pointBorderColor: context => colorForValue(context.raw, key)
+  };
+}
+function chartData(points, period, key) {
   if (period === '24h' || period === '7d') return {
     labels: points.map(point => point.x), daily: false,
-    datasets: [{ label: 'Lectura horaria', data: points.map(point => point.y), borderColor: color, backgroundColor: `${color}18`, fill: true, pointRadius: points.length > 170 ? 0 : 2, tension: 0.18 }]
+    datasets: [{ label: 'Lectura horaria', data: points.map(point => point.y), borderColor: COLORS[key], backgroundColor: `${COLORS[key]}12`, fill: true, pointRadius: points.length > 170 ? 0 : 2, tension: 0.18, ...coloredLineStyle(key) }]
   };
   const grouped = daily(points);
   return {
     labels: grouped.labels, daily: true,
     datasets: [
       { label: 'Mínimo diario', data: grouped.min, borderColor: 'transparent', pointRadius: 0 },
-      { label: 'Rango diario', data: grouped.max, borderColor: 'transparent', backgroundColor: `${color}2d`, pointRadius: 0, fill: '-1' },
-      { label: 'Promedio diario', data: grouped.avg, borderColor: color, backgroundColor: 'transparent', borderWidth: 2, pointRadius: grouped.avg.length > 100 ? 0 : 2, tension: 0.18 }
+      { label: 'Rango diario', data: grouped.max, borderColor: 'transparent', backgroundColor: `${COLORS[key]}20`, pointRadius: 0, fill: '-1' },
+      { label: 'Promedio diario', data: grouped.avg, borderColor: COLORS[key], backgroundColor: 'transparent', borderWidth: 3, pointRadius: grouped.avg.length > 100 ? 0 : 2, tension: 0.18, ...coloredLineStyle(key) }
     ]
   };
 }
@@ -180,7 +250,9 @@ function updateDateControls(forceValues = false) {
 
 async function render() {
   const sequence = ++renderSequence, station = stations[selected], key = $('variable').value, period = $('period').value;
-  const variable = manifest.variables[key], color = COLORS[key];
+  const variable = manifest.variables[key], qualityScale = QUALITY_SCALES[key];
+  updateQualityLegend(key);
+  updateMapColors(key);
   $('sensor-title').textContent = `Sensor ${station.sensor_id} · ${station.environment === 'INDOOR' ? 'Interior' : 'Exterior'}`;
   $('sensor-context').textContent = station.location_precision === 'exacta' ? `${station.location} · ${station.altitude_m} m s. n. m.` : station.location;
   try {
@@ -189,7 +261,7 @@ async function render() {
     const normRows = period === '24h' ? await rowsFor(station, '7d') : rows;
     if (sequence !== renderSequence) return;
     const points = rows.map(row => ({ x: row.fecha, y: number(row[key]) })).filter(point => point.y !== null);
-    const last = latest[station.sensor_id], lastValue = number(last?.[key]), norm = normFor(normRows, key), display = chartData(points, period, color);
+    const last = latest[station.sensor_id], lastValue = number(last?.[key]), norm = normFor(normRows, key), display = chartData(points, period, key);
     $('last-value').textContent = lastValue === null ? '—' : `${lastValue.toLocaleString('es-CL', { maximumFractionDigits: 1 })} ${variable.unit}`;
     $('last-time').textContent = last ? localDate(last.fecha) : 'Sin lectura';
     $('norm-state').textContent = norm[0];
@@ -207,11 +279,12 @@ async function render() {
         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         scales: {
           x: { ticks: { maxTicksLimit: 9, callback(value) { const raw = display.labels[value]; return raw ? new Date(raw.length === 10 ? `${raw}T00:00:00` : raw.replace(' ', 'T')).toLocaleDateString('es-CL') : ''; } }, grid: { display: false } },
-          y: { beginAtZero: true, title: { display: true, text: variable.unit } }
+          y: { beginAtZero: true, suggestedMax: qualityScale.limit || undefined, title: { display: true, text: variable.unit } }
         },
         plugins: {
           legend: { display: display.daily, labels: { filter: item => item.text !== 'Mínimo diario' } },
-          tooltip: { callbacks: { title(items) { const raw = items[0].label; return raw.length === 10 ? new Date(`${raw}T00:00:00`).toLocaleDateString('es-CL') : localDate(raw); } } }
+          tooltip: { callbacks: { title(items) { const raw = items[0].label; return raw.length === 10 ? new Date(`${raw}T00:00:00`).toLocaleDateString('es-CL') : localDate(raw); } } },
+          thresholdLine: { value: qualityScale.limit }
         }
       }
     });
