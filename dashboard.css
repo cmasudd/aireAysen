@@ -1,0 +1,67 @@
+#chart-empty[hidden],
+.date-control[hidden] {
+  display: none !important;
+}
+
+.controls input[type="date"] {
+  display: block;
+  margin-top: 5px;
+  min-width: 145px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.shared-sensor-dot {
+  width: 22px;
+  height: 22px;
+  border: 5px solid white;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 2px 9px #173b44;
+}
+
+.map-reading {
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.map-reading b,
+.map-reading small {
+  display: block;
+}
+
+.map-reading span {
+  display: block;
+  margin: 3px 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.map-reading button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.map-coordinates {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+}
+
+@media (max-width: 560px) {
+  .controls input[type="date"] {
+    width: 100%;
+    min-width: 0;
+  }
+}
