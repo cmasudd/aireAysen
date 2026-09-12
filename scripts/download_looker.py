@@ -11,7 +11,7 @@ import os
 import re
 import tempfile
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -224,7 +224,6 @@ def publish(rows: list[dict], config: dict, metadata: dict, output_dir: Path) ->
     write_if_changed(output_dir / "latest.csv", latest)
     manifest = {
         "updated_at": max(row["fecha"] for row in rows),
-        "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": "Looker Studio: data Aysen",
         "source_url": f"https://datastudio.google.com/reporting/{config['report_id']}",
         "variables": {
@@ -232,7 +231,7 @@ def publish(rows: list[dict], config: dict, metadata: dict, output_dir: Path) ->
             "pm25_ugm3": {"label": "MP2,5", "unit": "µg/m³", "norm": {"period": "24 h", "limit": 50, "reference": "DS 12/2011 MMA"}},
             "pm10_ugm3": {"label": "MP10", "unit": "µg/m³", "norm": {"period": "24 h", "limit": 130, "reference": "DS 12/2021 MMA, publicado en 2022"}}
         },
-        "source_metadata": metadata,
+        "source_metadata": {"app_version": metadata["app_version"]},
         "stations": stations,
     }
     write_if_changed(output_dir / "manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
