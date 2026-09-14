@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14 17:00:00",
+  "updated_at": "2026-09-14 18:00:00",
   "source": "Looker Studio: data Aysen",
   "source_url": "https://datastudio.google.com/reporting/5a8d0e63-cfeb-4707-bd0e-ce093b1eacdd",
   "variables": {
@@ -184,9 +184,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 9129,
+      "record_count": 9136,
       "first_at": "2024-06-11 09:00:00",
-      "last_at": "2026-09-14 11:00:00",
+      "last_at": "2026-09-14 18:00:00",
       "files": [
         "data/sensor-31/2024-06.csv",
         "data/sensor-31/2024-07.csv",
@@ -221,9 +221,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 11246,
+      "record_count": 11253,
       "first_at": "2024-06-12 19:00:00",
-      "last_at": "2026-09-14 11:00:00",
+      "last_at": "2026-09-14 18:00:00",
       "files": [
         "data/sensor-32/2024-06.csv",
         "data/sensor-32/2024-07.csv",
