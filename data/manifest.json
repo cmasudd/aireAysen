@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23 20:00:00",
+  "updated_at": "2026-09-23 21:00:00",
   "source": "Looker Studio: data Aysen",
   "source_url": "https://datastudio.google.com/reporting/5a8d0e63-cfeb-4707-bd0e-ce093b1eacdd",
   "variables": {
@@ -28,7 +28,7 @@
     }
   },
   "source_metadata": {
-    "app_version": "20260919_0700"
+    "app_version": "20260914_0100"
   },
   "stations": [
     {
@@ -184,9 +184,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 9354,
+      "record_count": 9355,
       "first_at": "2024-06-11 09:00:00",
-      "last_at": "2026-09-23 20:00:00",
+      "last_at": "2026-09-23 21:00:00",
       "files": [
         "data/sensor-31/2024-06.csv",
         "data/sensor-31/2024-07.csv",
@@ -221,9 +221,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 11471,
+      "record_count": 11472,
       "first_at": "2024-06-12 19:00:00",
-      "last_at": "2026-09-23 20:00:00",
+      "last_at": "2026-09-23 21:00:00",
       "files": [
         "data/sensor-32/2024-06.csv",
         "data/sensor-32/2024-07.csv",
@@ -431,9 +431,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 5814,
+      "record_count": 5823,
       "first_at": "2024-06-16 10:00:00",
-      "last_at": "2026-09-23 12:00:00",
+      "last_at": "2026-09-23 21:00:00",
       "files": [
         "data/sensor-39/2024-06.csv",
         "data/sensor-39/2024-07.csv",
