@@ -184,9 +184,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 9629,
+      "record_count": 9628,
       "first_at": "2024-06-11 09:00:00",
-      "last_at": "2026-10-05 07:00:00",
+      "last_at": "2026-10-05 06:00:00",
       "files": [
         "data/sensor-31/2024-06.csv",
         "data/sensor-31/2024-07.csv",
@@ -222,9 +222,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 11746,
+      "record_count": 11745,
       "first_at": "2024-06-12 19:00:00",
-      "last_at": "2026-10-05 07:00:00",
+      "last_at": "2026-10-05 06:00:00",
       "files": [
         "data/sensor-32/2024-06.csv",
         "data/sensor-32/2024-07.csv",
