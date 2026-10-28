@@ -28,7 +28,7 @@
     }
   },
   "source_metadata": {
-    "app_version": "20261018_1100"
+    "app_version": "20261025_0000"
   },
   "stations": [
     {
@@ -184,9 +184,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 10162,
+      "record_count": 10167,
       "first_at": "2024-06-11 09:00:00",
-      "last_at": "2026-10-27 13:00:00",
+      "last_at": "2026-10-27 18:00:00",
       "files": [
         "data/sensor-31/2024-06.csv",
         "data/sensor-31/2024-07.csv",
@@ -222,9 +222,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 12280,
+      "record_count": 12285,
       "first_at": "2024-06-12 19:00:00",
-      "last_at": "2026-10-27 13:00:00",
+      "last_at": "2026-10-27 18:00:00",
       "files": [
         "data/sensor-32/2024-06.csv",
         "data/sensor-32/2024-07.csv",
