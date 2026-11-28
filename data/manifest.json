@@ -436,9 +436,9 @@
         "pm25_ugm3",
         "pm10_ugm3"
       ],
-      "record_count": 7374,
+      "record_count": 7365,
       "first_at": "2024-06-16 10:00:00",
-      "last_at": "2026-11-28 01:00:00",
+      "last_at": "2026-11-27 16:00:00",
       "files": [
         "data/sensor-39/2024-06.csv",
         "data/sensor-39/2024-07.csv",
